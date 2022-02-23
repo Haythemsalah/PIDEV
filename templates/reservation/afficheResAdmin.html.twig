@@ -1,0 +1,66 @@
+
+{% extends 'base-back.html.twig' %}
+
+{% block body %}
+
+    <table class="table mb-0">
+        <div style="margin-left:1250px;">
+            <a class="btn btn-info" href="{{path('ajoutResAdmin')}}"> Ajouter une Reservation </a>
+
+        </div>
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                DateReservation
+            </td>
+            <td>
+                nbrPersonne
+            </td>
+            <td>
+                Date
+            </td>
+            <td>
+                Event
+            </td>
+
+        </tr>
+        {%  for i in r %}
+            <tr>
+
+                <td>
+                    {{ i.id }}
+                </td>
+                <td>
+                    {{ i.getDateRes()|date('d-m-Y H:i:s') }}
+                </td>
+                <td>
+                    {{ i.event.Nom}}
+                </td>
+                <td>
+                    {{ i.nbrPersonnes }}
+                </td>
+                <td>
+                    {{ i.Event.Nom }}
+                </td>
+
+                <td>
+
+                    <a class="btn btn-info" href="{{ path('suppRes',{'id':i.id}) }}">
+                        <button>Supprimer</button>
+                    </a>
+
+                </td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('modifRes',{'id':i.id}) }}">
+                        <button>modifier</button>
+                    </a>
+                </td>
+
+
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

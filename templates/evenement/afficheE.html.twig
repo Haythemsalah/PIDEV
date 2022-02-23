@@ -1,0 +1,79 @@
+{% extends 'base-back.html.twig' %}
+
+{% block body %}
+
+    <table class="table mb-0">
+        <div style="margin-left:1250px;">
+            <a class="btn btn-info" href="{{path('ajoutE')}}"> Ajouter un Event </a>
+        </div>
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                Nom
+            </td>
+            <td>
+                Capacite
+            </td>
+            <td>
+                Date
+            </td>
+            <td>
+                Description
+            </td>
+            <td>
+                Image
+            </td>
+            <td>
+                Adresse
+            </td>
+        </tr>
+        {%  for i in e %}
+            <tr>
+
+                <td>
+                    {{ i.id }}
+                </td>
+                <td>
+                    {{ i.Nom }}
+                </td>
+                <td>
+                    {{ i.Capacite}}
+                </td>
+                <td>
+                    {{ i.getDate()|date('d-m-Y') }}
+                </td>
+
+                <td>
+                    {{ i.Description}}
+                </td>
+                <td><img src="{{ asset('/uploads/' ~ i.Image ) }}" alt="img" class="image" style="max-height: 180px; width: 150px;" ></td>
+
+                <td>
+                    {{ i.Adresse}}
+                </td>
+
+                <td>
+                    <form action="{{ path('ajoutE',{'id':i.id}) }}">
+                        <button>Ajouter</button>
+                    </form>
+                </td>
+
+                <td>
+                    <form action="{{ path('suppE',{'id':i.id}) }}">
+                        <button>Supprimer</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{{ path('modifE',{'id':i.id}) }}">
+                        <button>modifier</button>
+                    </form>
+                </td>
+
+
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

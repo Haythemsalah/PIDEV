@@ -1,0 +1,18 @@
+{% extends 'base-front.html.twig' %}
+
+{% block body %}
+
+
+    {%  for i in ev %}
+        <img src="{{ asset('uploads/' ~ i.image ) }}" alt="My Image" class="myImage" style="max-height: 300px; max-width: 380px;">
+        <h3  style="text-align: center">{{i.nom}}</h3>
+        <a class="btn btn-danger" href="{{ path('ajoutR') }}"> Réserver </a>
+        <h4 style="text-align: center">{{ i.getDate()|date('d-m-Y H:i:s') }}</h4>
+        <h4 style="text-align: center">{{i.Description}}</h4>
+        <br> </br>
+
+
+    {% endfor %}
+
+
+{% endblock %}
